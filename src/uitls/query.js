@@ -15,8 +15,8 @@ function handleOption(opt) {
   return newList;
 }
 
-function useBaseFetch(ql) {
-  let [data, setData] = useState({});
+function useBaseFetch(ql, { defaultData }) {
+  let [data, setData] = useState(defaultData || {});
   let [loading, setLoading] = useState(false);
   let [error, setError] = useState(null);
 
@@ -61,7 +61,7 @@ function useBaseFetch(ql) {
   return { fetch, data, loading, error, setError, updateCache, setLoading };
 }
 export function useQuery(ql, params, options) {
-  let context = useBaseFetch(ql);
+  let context = useBaseFetch(ql, options);
   return {
     ...context,
     fetch: (newParams, newOptions) => {
@@ -71,22 +71,27 @@ export function useQuery(ql, params, options) {
 }
 
 export function useAutoQuery(ql, params = {}, options = {}) {
-  let context = useBaseFetch(ql);
+  let context = useBaseFetch(ql, options);
+  let defaultData = options.defaultData;
+  console.log(defaultData);
   useEffect(() => {
-    //是否等待
-    if (options.stop) {
-      //停止不需要加载效果
-    } else if (options.hold) {
-      //hold需要加载效果
-      context.setLoading(true);
-    } else {
-      context.fetch(params, options);
+    if (!defaultData || Object.keys(defaultData).length == 0) {
+      //是否等待
+      if (options.stop) {
+        //停止不需要加载效果
+      } else if (options.hold) {
+        //hold需要加载效果
+        context.setLoading(true);
+      } else {
+        context.fetch(params, options);
+      }
     }
-  }, handleOption(params));
+  }, [...handleOption(params), defaultData]);
+
   return {
     ...context,
     fetchMore: (newParams, newOptions, updateQuery) => {
-      context.fetch({ ...params, ...newParams }, { ...options, ...newOptions, updateQuery });
+      context.fetch({ ...params, ...newParams }, { updateQuery, ...options, ...newOptions });
     },
     update: () => {
       context.fetch(params, options);

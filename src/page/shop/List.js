@@ -5,17 +5,15 @@ import { Table, Text, Image, Mask, Box, IconButton, SearchField, Spinner } from 
 import { Link } from "react-router-dom";
 import { getImgSrc } from "../../uitls/tools";
 import Page from "../../components/Page";
+
+let pData = null;
 function List(props) {
   let params = new URLSearchParams(props.location.search);
 
   let [keyword, setKeyword] = useState("");
-  let {
-    data: { list, page, total_page, page_size },
-    update,
-    loading,
-    fetchMore,
-  } = useAutoQuery(shops, { status: params.get("status") || 0, keyword });
+  let { data, update, loading, fetchMore } = useAutoQuery(shops, { status: params.get("status") || 0, keyword }, { defaultData: pData });
   let { fetch: delFetch } = useQuery(delShop, {}, { onSuccess: () => update() });
+  let { list, page, total_page, page_size } = (pData = data);
 
   return (
     <Box>
