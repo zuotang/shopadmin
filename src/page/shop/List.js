@@ -6,14 +6,17 @@ import { Link } from "react-router-dom";
 import { getImgSrc } from "../../uitls/tools";
 import Page from "../../components/Page";
 
-let pData = null;
+let pDatas = {};
 function List(props) {
+  let key = props.location.pathname;
   let params = new URLSearchParams(props.location.search);
 
   let [keyword, setKeyword] = useState("");
-  let { data, update, loading, fetchMore } = useAutoQuery(shops, { status: params.get("status") || 0, keyword }, { defaultData: pData });
+  let { data, update, loading, fetchMore } = useAutoQuery(shops, { status: params.get("status") || 0, keyword }, { defaultData: pDatas[key] });
   let { fetch: delFetch } = useQuery(delShop, {}, { onSuccess: () => update() });
-  let { list, page, total_page, page_size } = (pData = data);
+
+  pDatas[key] = data;
+  let { list, page, total_page, page_size } = data;
 
   return (
     <Box>

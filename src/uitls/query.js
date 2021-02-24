@@ -73,9 +73,11 @@ export function useQuery(ql, params, options) {
 export function useAutoQuery(ql, params = {}, options = {}) {
   let context = useBaseFetch(ql, options);
   let defaultData = options.defaultData;
-  console.log(defaultData);
+  let notDefault = useRef();
   useEffect(() => {
-    if (!defaultData || Object.keys(defaultData).length == 0) {
+    let isFetch = notDefault.current || !defaultData || Object.keys(defaultData).length == 0;
+    notDefault.current = true;
+    if (isFetch) {
       //是否等待
       if (options.stop) {
         //停止不需要加载效果
@@ -86,7 +88,7 @@ export function useAutoQuery(ql, params = {}, options = {}) {
         context.fetch(params, options);
       }
     }
-  }, [...handleOption(params), defaultData]);
+  }, handleOption(params));
 
   return {
     ...context,
