@@ -9,10 +9,11 @@ import Page from "../../components/Page";
 let pDatas = {};
 function List(props) {
   let key = props.location.pathname;
+
   let params = new URLSearchParams(props.location.search);
 
   let [keyword, setKeyword] = useState("");
-  let { data, update, loading, fetchMore } = useAutoQuery(shops, { status: params.get("status") || 0, keyword }, { defaultData: pDatas[key] });
+  let { data, update, loading, fetchMore } = useAutoQuery(shops, { status: params.get("status") || 0, keyword }, { defaultData: props.history.action == "POP" && pDatas[key] });
   let { fetch: delFetch } = useQuery(delShop, {}, { onSuccess: () => update() });
 
   pDatas[key] = data;

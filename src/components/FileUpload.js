@@ -58,67 +58,49 @@ function FileUpload({ name, formCtx, label, type = "image" }) {
   });
 
   let fileRef = useRef();
-  let [uploads, setUploads] = useState({});
+  //let [uploads, setUploads] = useState({});
   useEffect(() => {
     if (fields) {
       let newUploads = [];
       fields.map((field) => {
         newUploads.push({ url: field.url, pre: 100 });
       });
-      setUploads(newUploads);
+      //setUploads(newUploads);
     }
   }, [fields]);
 
-  function setFileStatus(id, obj) {
-    setUploads((data) => ({
-      ...data,
-      [id]: data[id] ? { fileid: id, ...data[id], ...obj } : obj,
-    }));
-  }
+  // function setFileStatus(id, obj) {
+  //   setUploads((data) => ({
+  //     ...data,
+  //     [id]: data[id] ? { fileid: id, ...data[id], ...obj } : obj,
+  //   }));
+  // }
 
-  function updateFile(file) {
+  function uploadFile(file) {
     let data = new FormData();
     data.append("file", file);
     let fileId = file.lastModified;
-    setFileStatus(fileId, {
-      fileId,
-      pre: 0,
-      url: "",
-    });
+
     axios
       .post(`${baseUrl}/file/uploadfile`, data, {
         onUploadProgress: (e) => {
           let pre = Math.floor((e.loaded / e.total) * 100);
-          setFileStatus(fileId, {
-            pre: pre,
-          });
           // e.loaded 已经上传的字节数据，e.total 字节数据  转换为1-100的比例值 赋值个pre
         },
       })
       .then(({ data }) => {
-        //setFileStatus(fileId, data.data);
         append(data.data);
       });
   }
-  function updateFiles(files) {
+  function uploadFiles(files) {
+    console.log(files);
     for (let item of files) {
-      updateFile(item);
+      uploadFile(item);
     }
   }
 
-  function removeFile(item) {
-    // let newUploads = { ...uploads };
-    // delete newUploads[item.fileId];
-    // setUploads(newUploads);
-    let index = fields.findIndex((findItem) => findItem.url == item.url);
-    if (index > -1) {
-      remove(index);
-    }
-  }
   return (
     <>
-      {type == "file" && <FilesShow uploads={uploads} remove={removeFile} />}
-      {type == "image" && <ImagesShow uploads={uploads} remove={removeFile} />}
       {fields.map((field, index) => {
         return (
           <div key={field.id} style={{ display: "none" }}>
@@ -126,6 +108,23 @@ function FileUpload({ name, formCtx, label, type = "image" }) {
           </div>
         );
       })}
+      <Box display="flex" marginBottom={2} wrap>
+        {fields.map((field, index) => {
+          return (
+            <Box position="relative" color="lightGray" margin={1} key={field.url}>
+              <ImageBox>
+                <img src={`${baseUrl}${field.url}`} />
+                <Box position="absolute" color="white" bottom={true}>
+                  <Text size="sm">{field.url}</Text>
+                </Box>
+              </ImageBox>
+              <Box position="absolute" top={true} right={true}>
+                <IconButton accessibilityLabel="clear" iconColor="darkGray" icon="clear" onClick={(e) => remove(index)} />
+              </Box>
+            </Box>
+          );
+        })}
+      </Box>
       <Button
         text={label || "上传文件"}
         onClick={(e) => {
@@ -139,7 +138,7 @@ function FileUpload({ name, formCtx, label, type = "image" }) {
         ref={fileRef}
         style={{ display: "none" }}
         onChange={(e) => {
-          updateFiles(e.target.files);
+          uploadFiles(e.target.files);
         }}
       />
     </>

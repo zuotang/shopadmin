@@ -19,7 +19,12 @@ function Add(props) {
     handleSubmit,
     watch,
   };
-  let { fetch, error } = useQuery(isEdit ? editShop : addShop, null, { onSuccess: setMessage });
+  let { fetch, error } = useQuery(isEdit ? editShop : addShop, null, {
+    onSuccess: (msg, data) => {
+      setMessage(msg);
+      props.history.replace("/shop");
+    },
+  });
   let { fetch: reShopFetch } = useQuery(reShop, { id: id }, { onSuccess: setMessage });
 
   let { data } = useAutoQuery(getShop, { id: id }, { stop: !id, onSuccess: (msg, res) => reset(res) });
