@@ -44,6 +44,12 @@ function Add(props) {
             {error && <Callout type="error" iconAccessibilityLabel="Error icon" message={error} />}
           </Box>
           <form onSubmit={handleSubmit(onSubmit)}>
+          <Box display="flex" wrap>
+              <Box flex="grow" paddingX={3} paddingY={3}>
+                <FormItem com={TextField} name="brand" label="品牌" ref={register()} />
+              </Box>
+            </Box>
+
             <Box display="flex" wrap>
               <Box flex="grow" paddingX={3} paddingY={3}>
                 <FormItem com={TextField} name="name" label="名字" ref={register()} />

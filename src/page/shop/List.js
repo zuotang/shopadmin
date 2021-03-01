@@ -5,7 +5,7 @@ import { Table, Text, Image, Mask, Box, IconButton, SearchField, Spinner } from 
 import { Link } from "react-router-dom";
 import { getImgSrc } from "../../uitls/tools";
 import Page from "../../components/Page";
-
+import ListEdit from './components/ListEdit';
 let pDatas = {};
 function List(props) {
   let key = props.location.pathname;
@@ -81,6 +81,7 @@ function List(props) {
               </Table.Cell>
               <Table.Cell>
                 <Box display="flex">
+                    <ListEdit />
                   <Link to={`/shop/edit/${item.id}`}>
                     <IconButton icon="edit" />
                   </Link>

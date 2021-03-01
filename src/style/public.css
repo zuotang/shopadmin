@@ -16,23 +16,14 @@ body {
   user-select: none;
 }
 
-/* html,
+
+html,
 body,
 body #root,
 body #root > div,
 body #root > div > div {
   height: 100%;
   width: 100%;
-  overflow: hidden;
-  position: relative;
-} */
-html,
-body,
-body #root {
-  height: 100%;
-  width: 100%;
-
-  position: relative;
 }
 a {
   text-decoration: none;
@@ -41,3 +32,42 @@ a {
 .selected > button > div {
   color: var(--g-colorRed100);
 }
+
+
+.page-exit{
+  transition: transform 0.3s,opacity 0.3s;
+  transform: translateY(0px);
+  background-color: red;
+  opacity: 1;
+  position: absolute;
+  z-index: 999;
+  top: 0;
+}
+.page-exit-active{
+  transform: translateY(100px);
+  opacity: 0;
+
+}
+.page-exit-done{
+
+}
+
+
+.page-enter{
+  transition: transform 0.3s ,opacity 0.3s;
+  transform: translateY(100px);
+  opacity: 0;
+  transition-delay: 0.3s;
+  position: absolute;
+  top: 0;
+}
+.page-enter-active{
+
+  transform: translateY(0px);
+  opacity: 1;
+}
+
+.page-enter-done{
+
+}
+
