@@ -11,7 +11,7 @@ import useDebounce from "../../hooks/useDebounce";
 
 function Item({ data, onChange }) {
   if (data.type == "Image") {
-    return <FileItem data={data} onChange={onChange} />;
+    return <ImageItem data={data} onChange={onChange} />;
   } else {
     return <StringItem data={data} onChange={onChange} type={data.type?.toLowerCase()} />;
   }
@@ -53,7 +53,7 @@ function StringItem({ data, onChange, type = "string" }) {
   );
 }
 
-function FileItem({ data, onChange }) {
+function ImageItem({ data, onChange }) {
   let [image, setImage] = useState(data.value);
   let { fetch, error, loading } = useQuery(edit);
 
