@@ -56,11 +56,12 @@ function useBaseFetch(ql, { defaultData }) {
   }
   //更新缓存数据
   function updateCache(fun) {
-    setData(fun(data));
+    let res = fun({ ...data });
+    setData(res);
   }
   return { fetch, data, loading, error, setError, updateCache, setLoading };
 }
-export function useQuery(ql, params, options) {
+export function useQuery(ql, params, options = {}) {
   let context = useBaseFetch(ql, options);
   return {
     ...context,

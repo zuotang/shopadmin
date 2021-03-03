@@ -32,3 +32,8 @@ export async function shops(params) {
   let { data } = await axios.get(baseUrl + "/shop/list", { params });
   return data.data;
 }
+
+export async function attrEdit(params) {
+  let { data } = await axios.post(baseUrl + "/shop/attr/edit", { ...params });
+  return data.data;
+}

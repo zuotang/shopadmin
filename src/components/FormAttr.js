@@ -23,7 +23,7 @@ function FormAttr({ name, formCtx: { control, register } }) {
           field && (
             <Box display="flex" wrap key={field.id}>
               <Box column={3} paddingX={3} paddingY={3}>
-                <FormItem com={TextField} name={`${name}[${index}].name`} defaultValue={field.name} label="大类" ref={register()} />
+                <FormItem com={TextField} name={`${name}[${index}].name`} defaultValue={field.name} label="名称" ref={register()} />
               </Box>
               <Box column={2} paddingX={3} paddingY={3}>
                 <FormItem com={TextField} name={`${name}[${index}].value`} defaultValue={field.value} label="值" type="number" ref={register()} />

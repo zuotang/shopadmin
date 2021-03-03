@@ -5,7 +5,7 @@ import { Table, Text, Image, Mask, Box, IconButton, SearchField, Spinner } from 
 import { Link } from "react-router-dom";
 import { getImgSrc } from "../../uitls/tools";
 import Page from "../../components/Page";
-import ListEdit from './components/ListEdit';
+import ListEdit from "./components/ListEdit";
 let pDatas = {};
 function List(props) {
   let key = props.location.pathname;
@@ -13,12 +13,15 @@ function List(props) {
   let params = new URLSearchParams(props.location.search);
 
   let [keyword, setKeyword] = useState("");
-  let { data, update, loading, fetchMore } = useAutoQuery(shops, { status: params.get("status") || 0, keyword }, { defaultData: props.history.action == "POP" && pDatas[key] });
+  let { data, update, loading, fetchMore, updateCache } = useAutoQuery(
+    shops,
+    { status: params.get("status") || 0, keyword },
+    { defaultData: props.history.action == "POP" && pDatas[key] }
+  );
   let { fetch: delFetch } = useQuery(delShop, {}, { onSuccess: () => update() });
 
   pDatas[key] = data;
   let { list, page, total_page, page_size } = data;
-
   return (
     <Box>
       <Box padding={2}>
@@ -46,12 +49,15 @@ function List(props) {
               <Text weight="bold">代理价格</Text>
             </Table.HeaderCell>
             <Table.HeaderCell>
+              <Text weight="bold">库存</Text>
+            </Table.HeaderCell>
+            <Table.HeaderCell>
               <Text weight="bold">编辑</Text>
             </Table.HeaderCell>
           </Table.Row>
         </Table.Header>
         <Table.Body>
-          {list?.map((item) => (
+          {list?.map((item, key) => (
             <Table.Row key={item.id}>
               <Table.Cell>
                 <Box display="flex" alignItems="center">
@@ -80,12 +86,26 @@ function List(props) {
                 <Text>{item.proxy_price}</Text>
               </Table.Cell>
               <Table.Cell>
+                <ListEdit
+                  num={item.attr_num}
+                  data={item.attr}
+                  onChange={(item, attrKay) => {
+                    updateCache((data) => {
+                      data.list[key].attr[attrKay] = item;
+                      let total = data.list[key].attr.reduce((total, item) => {
+                        return Number(total) + Number(item.value);
+                      }, 0);
+                      data.list[key].attr_num = total.toString();
+                      return data;
+                    });
+                  }}
+                />
+              </Table.Cell>
+              <Table.Cell>
                 <Box display="flex">
-                    <ListEdit />
                   <Link to={`/shop/edit/${item.id}`}>
                     <IconButton icon="edit" />
                   </Link>
-
                   {item.status === 0 && (
                     <IconButton
                       icon="cancel"

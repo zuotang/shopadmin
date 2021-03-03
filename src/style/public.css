@@ -16,14 +16,13 @@ body {
   user-select: none;
 }
 
-
 html,
 body,
-body #root,
-body #root > div,
-body #root > div > div {
+body #root {
   height: 100%;
   width: 100%;
+
+  position: relative;
 }
 a {
   text-decoration: none;
@@ -32,42 +31,42 @@ a {
 .selected > button > div {
   color: var(--g-colorRed100);
 }
-
-
-.page-exit{
-  transition: transform 0.3s,opacity 0.3s;
+.pagebox {
+  position: relative;
+}
+.page-exit {
+  background-color: white;
+  transition: transform 0.3s, opacity 0.3s;
   transform: translateY(0px);
-  background-color: red;
   opacity: 1;
   position: absolute;
   z-index: 999;
   top: 0;
+  left: 0;
+  right: 0;
 }
-.page-exit-active{
+.page-exit-active {
   transform: translateY(100px);
   opacity: 0;
-
 }
-.page-exit-done{
-
+.page-exit-done {
 }
 
-
-.page-enter{
-  transition: transform 0.3s ,opacity 0.3s;
+.page-enter {
+  background-color: white;
+  transition: transform 0.3s, opacity 0.3s;
   transform: translateY(100px);
   opacity: 0;
   transition-delay: 0.3s;
   position: absolute;
   top: 0;
+  left: 0;
+  right: 0;
 }
-.page-enter-active{
-
+.page-enter-active {
   transform: translateY(0px);
   opacity: 1;
 }
 
-.page-enter-done{
-
+.page-enter-done {
 }
-

@@ -3,7 +3,7 @@ import { TransitionGroup, CSSTransition } from "react-transition-group";
 
 // The duration for each phase of the transition
 // So the total duration will be _twice_ this
-const timeout =600;
+const timeout = 600;
 
 let pPathName = "";
 const Transition = ({ children, history, location }) => {
@@ -12,7 +12,7 @@ const Transition = ({ children, history, location }) => {
     pPathName = location.pathname;
   }
   return (
-    <TransitionGroup >
+    <TransitionGroup className="pagebox">
       <CSSTransition appear={true} key={history.action == "REPLACE" ? pPathName : location.pathname} timeout={timeout} classNames="page">
         {/* {(status) => <div style={styles[status]}></div>} */}
         <div>{children}</div>

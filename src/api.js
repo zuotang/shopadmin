@@ -1,5 +1,5 @@
 import axios from "./uitls/http";
-export const baseUrl = process.env.NODE_ENV == "development" ? "http://localhost:3001" : "";
+export const baseUrl = process.env.NODE_ENV == "development" ? "http://localhost:80" : "";
 //登录
 export async function signin(params) {
   let { data } = await axios.post(baseUrl + "/user/signin", { ...params });
