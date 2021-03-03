@@ -26,7 +26,7 @@ function Shop(props) {
       </Column>
       <Column span={10}>
         <Box color="lightGray" padding={1}>
-          <Box color="white" paddingY={2}>
+          <Box color="white" paddingY={2} minHeight={900}>
             <Transition {...props}>
               <Switch location={props.location}>
                 <Route path="/shop/add" component={Add} />

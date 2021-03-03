@@ -10,7 +10,6 @@ const ImageBox = syled.div`
   img{
     width:100%;
   }
-
 `;
 
 function FilesShow({ uploads, remove }) {
@@ -56,36 +55,22 @@ function FileUpload({ name, formCtx, label, type = "image" }) {
     control,
     name: name,
   });
-
   let fileRef = useRef();
-  //let [uploads, setUploads] = useState({});
   useEffect(() => {
     if (fields) {
       let newUploads = [];
       fields.map((field) => {
         newUploads.push({ url: field.url, pre: 100 });
       });
-      //setUploads(newUploads);
     }
   }, [fields]);
-
-  // function setFileStatus(id, obj) {
-  //   setUploads((data) => ({
-  //     ...data,
-  //     [id]: data[id] ? { fileid: id, ...data[id], ...obj } : obj,
-  //   }));
-  // }
-
   function uploadFile(file) {
     let data = new FormData();
     data.append("file", file);
-    let fileId = file.lastModified;
-
     axios
       .post(`${baseUrl}/file/uploadfile`, data, {
         onUploadProgress: (e) => {
           let pre = Math.floor((e.loaded / e.total) * 100);
-          // e.loaded 已经上传的字节数据，e.total 字节数据  转换为1-100的比例值 赋值个pre
         },
       })
       .then(({ data }) => {

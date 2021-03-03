@@ -11,3 +11,8 @@ export async function userInfo(params) {
   let { data } = await axios.get(baseUrl + "/user/info", { ...params });
   return data.data;
 }
+
+export async function getWebConfig() {
+  let { data } = await axios.get(baseUrl + "/web/config/");
+  return data.data;
+}

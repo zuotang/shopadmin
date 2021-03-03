@@ -3,7 +3,7 @@ import { useAutoQuery } from "../uitls/query";
 import { userInfo } from "../api";
 
 function useUserInfo(push) {
-  let { data, error, loading } = useAutoQuery(userInfo, null, {
+  let { data, update, error, loading } = useAutoQuery(userInfo, null, {
     onError(msg, e) {
       push("/signin");
     },
@@ -14,7 +14,7 @@ function useUserInfo(push) {
     },
   });
 
-  return data;
+  return { data, update, error, loading };
 }
 
 export default useUserInfo;

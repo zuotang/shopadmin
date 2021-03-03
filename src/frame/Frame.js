@@ -7,9 +7,13 @@ import Shop from "../page/shop/Shop";
 import Home from "../page/Home";
 import useUserInfo from "../hooks/useUserInfo";
 import { UserContext } from "../components/UserContext";
+import { getWebConfig } from "../api";
+import { useAutoQuery } from "../uitls/query";
+import { WebCtx } from "../components/WebContext";
 
 function IndexPage(props) {
-  let userData = useUserInfo(props.history.push);
+  let { data, update, loading } = useAutoQuery(getWebConfig);
+  let { data: userData, update: userUpdate } = useUserInfo(props.history.push);
   if (!userData.id) {
     return (
       <Box paddingY={12}>
@@ -18,14 +22,16 @@ function IndexPage(props) {
     );
   }
   return (
-    <UserContext.Provider value={userData}>
-      <Header {...props} />
-      <Switch location={props.location}>
-        <Route path="/system" component={System} />
-        <Route path="/shop" component={Shop} />
-        <Route path="/" component={Home} />
-      </Switch>
-    </UserContext.Provider>
+    <WebCtx.Provider value={{ ...data, update }}>
+      <UserContext.Provider value={{ ...userData, update: userUpdate }}>
+        <Header {...props} />
+        <Switch location={props.location}>
+          <Route path="/system" component={System} />
+          <Route path="/shop" component={Shop} />
+          <Route path="/" component={Home} />
+        </Switch>
+      </UserContext.Provider>
+    </WebCtx.Provider>
   );
 }
 

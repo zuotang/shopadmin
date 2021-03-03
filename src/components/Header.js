@@ -1,17 +1,24 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Box, Icon, ButtonGroup, Button, IconButton, Divider, Heading, SearchField } from "gestalt";
 import { NavLink } from "react-router-dom";
-import { clearAllCookie } from "../uitls/tools";
+import { clearAllCookie, getImgSrc } from "../uitls/tools";
+import { WebCtx } from "./WebContext";
 function Header({ history }) {
   const [value, setValue] = React.useState("");
+  let web = useContext(WebCtx);
   return (
     <Box color="white" rounding={2} padding={3} display="flex" alignItems="center">
-      <Box padding={3}>
-        <Icon icon="pinterest" color="red" size={20} accessibilityLabel="Pinterest" />
-        {/* <Heading color="red" size="sm">
-          后台管理系统
-        </Heading> */}
+      <Box display="flex" alignItems="center">
+        <Box>
+          <img src={getImgSrc(web.logo)} width={35} height={35} />
+        </Box>
+        <Box padding={2}>
+          <Heading color="red" size="sm">
+            {web.title}
+          </Heading>
+        </Box>
       </Box>
+
       <Box padding={2}>
         <ButtonGroup>
           <NavLink exact activeClassName="selected" to="/">
