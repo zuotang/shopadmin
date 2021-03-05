@@ -100,7 +100,7 @@ function ImageItem({ data, onChange }) {
           }}
         />
         <Text size="sm">{data.note}</Text>
-        <Spinner show={loading} accessibilityLabel="Example spinner" />
+        <Spinner show={loading} size="sm" accessibilityLabel="Example spinner" />
       </Box>
     </Box>
   );

@@ -7,6 +7,8 @@ import { addShop, editShop, getShop, reShop } from "./api";
 import { useQuery, useAutoQuery } from "../../uitls/query";
 import FormAttr from "../../components/FormAttr";
 import ShowMessage from "../../components/ShowMessage";
+//import Edit from "../../components/Edit";
+
 function Add(props) {
   let [message, setMessage] = useState("");
   let { id } = props.match.params;
@@ -44,7 +46,7 @@ function Add(props) {
             {error && <Callout type="error" iconAccessibilityLabel="Error icon" message={error} />}
           </Box>
           <form onSubmit={handleSubmit(onSubmit)}>
-          <Box display="flex" wrap>
+            <Box display="flex" wrap>
               <Box flex="grow" paddingX={3} paddingY={3}>
                 <FormItem com={TextField} name="brand" label="品牌" ref={register()} />
               </Box>

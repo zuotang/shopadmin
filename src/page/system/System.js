@@ -24,12 +24,10 @@ function System(props) {
       <Column span={10}>
         <Box color="lightGray" padding={1}>
           <Box color="white" paddingY={2} overflow="hidden" minHeight={800}>
-            <Transition {...props}>
-              <Switch location={props.location}>
-                <Route exact path="/system/" component={Web} />
-                <Route path="/system/config" component={Building} />
-              </Switch>
-            </Transition>
+            <Switch>
+              <Route exact path="/system/" component={Web} />
+              <Route path="/system/config" component={Building} />
+            </Switch>
           </Box>
         </Box>
       </Column>

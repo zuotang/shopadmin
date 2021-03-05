@@ -12,7 +12,7 @@ import { useAutoQuery } from "../uitls/query";
 import { WebCtx } from "../components/WebContext";
 
 function IndexPage(props) {
-  let { data, update, loading } = useAutoQuery(getWebConfig);
+  let { data, update, loading } = useAutoQuery(getWebConfig, {}, { cachePolicy: "local" });
   let { data: userData, update: userUpdate } = useUserInfo(props.history.push);
   if (!userData.id) {
     return (

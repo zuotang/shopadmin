@@ -27,14 +27,12 @@ function Shop(props) {
       <Column span={10}>
         <Box color="lightGray" padding={1}>
           <Box color="white" paddingY={2} minHeight={900}>
-            <Transition {...props}>
-              <Switch location={props.location}>
-                <Route path="/shop/add" component={Add} />
-                <Route path="/shop/edit/:id" component={Add} />
-                <Route path="/shop/recovery" component={List} />
-                <Route path="/shop" component={List} />
-              </Switch>
-            </Transition>
+            <Switch>
+              <Route path="/shop/add" component={Add} />
+              <Route path="/shop/edit/:id" component={Add} />
+              <Route path="/shop/recovery" component={List} />
+              <Route path="/shop" component={List} />
+            </Switch>
           </Box>
         </Box>
       </Column>
