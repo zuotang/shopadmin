@@ -1,6 +1,7 @@
 import React, { useRef, useState, useEffect } from "react";
 import axios from "axios";
 import { baseUrl } from "../api";
+import { getThumbSrc } from "../uitls/tools";
 import { Button, Box, IconButton, Text } from "gestalt";
 import syled from "styled-components";
 import { useForm, useFieldArray } from "react-hook-form";
@@ -98,7 +99,7 @@ function FileUpload({ name, formCtx, label, type = "image" }) {
           return (
             <Box position="relative" color="lightGray" margin={1} key={field.url}>
               <ImageBox>
-                <img src={`${baseUrl}${field.url}`} />
+                <img src={getThumbSrc(field.url)} />
                 <Box position="absolute" color="white" bottom={true}>
                   <Text size="sm">{field.url}</Text>
                 </Box>

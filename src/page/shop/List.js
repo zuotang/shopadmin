@@ -3,7 +3,7 @@ import { useAutoQuery, useQuery } from "../../uitls/query";
 import { shops, delShop } from "./api";
 import { Table, Text, Image, Mask, Box, IconButton, SearchField, Spinner } from "gestalt";
 import { Link } from "react-router-dom";
-import { getImgSrc } from "../../uitls/tools";
+import { getImgSrc, getThumbSrc } from "../../uitls/tools";
 import Page from "../../components/Page";
 import ListEdit from "./components/ListEdit";
 let pDatas = {};
@@ -64,7 +64,7 @@ function List(props) {
                   <Box width={80}>
                     {item.photo && (
                       <Mask rounding={2} wash>
-                        <Image alt="Luna" src={getImgSrc(item.photo[0]?.url)} naturalHeight={50} naturalWidth={50} />
+                        <Image alt="Luna" src={getThumbSrc(item.photo[0]?.url, "xs")} naturalHeight={50} naturalWidth={50} />
                       </Mask>
                     )}
                   </Box>
