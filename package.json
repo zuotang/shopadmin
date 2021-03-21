@@ -9,6 +9,7 @@
     "@testing-library/user-event": "^12.1.10",
     "axios": "^0.21.1",
     "classnames": "^2.2.6",
+    "dayjs": "^1.10.4",
     "gestalt": "^17.1.6",
     "griffith": "^1.10.0",
     "griffith-message": "^1.10.0",

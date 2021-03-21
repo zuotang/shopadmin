@@ -4,7 +4,7 @@ import { Switch, Route, Link } from "react-router-dom";
 import Header from "../components/Header";
 import System from "../page/system/System";
 import Shop from "../page/shop/Shop";
-import Home from "../page/Home";
+import Home from "../page/home/Home";
 import useUserInfo from "../hooks/useUserInfo";
 import { UserContext } from "../components/UserContext";
 import { getWebConfig } from "../api";

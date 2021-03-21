@@ -8,7 +8,7 @@ import FormItem from "../components/FormItem";
 function Signin({ history }) {
   let { fetch, error, loading } = useQuery(signin, null, {
     onSuccess: () => {
-      history.push("/shop");
+      history.push("/");
     },
   });
   const { register, handleSubmit, errors } = useForm();

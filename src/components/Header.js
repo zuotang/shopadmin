@@ -25,9 +25,9 @@ function Header({ history }) {
             <Button text="主页" color="transparent" />
           </NavLink>
           <Divider />
-          <NavLink activeClassName="selected" to="/shop">
+          {/* <NavLink activeClassName="selected" to="/shop">
             <Button text="商品" color="transparent" />
-          </NavLink>
+          </NavLink> */}
           <NavLink activeClassName="selected" to="/system">
             <Button text="系统" color="transparent" />
           </NavLink>
