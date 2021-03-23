@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Box, Toast } from "gestalt";
-function ToastExample({ message = { type: "", message: "" }, time = 2000 }) {
+function ToastExample({ message = { type: "", message: "" }, time = 2000, color = "white" }) {
   let [showToast, setShowToast] = useState(false);
   useEffect(() => {
     if (message.message) {
@@ -23,7 +23,7 @@ function ToastExample({ message = { type: "", message: "" }, time = 2000 }) {
       paddingX={1}
       position="fixed"
     >
-      {showToast && <Toast text={message.message || ""} />}
+      {showToast && <Toast text={message.message || ""} color={color} />}
     </Box>
   );
 }

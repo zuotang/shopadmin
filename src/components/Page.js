@@ -2,10 +2,18 @@ import React from "react";
 import { Box, ButtonGroup, Button, IconButton, Text } from "gestalt";
 
 function Header({ history, page, onChange, total_page = 0 }) {
-  let list = Array.from(Array(total_page + 1), (v, k) => k);
+  let list = []; //Array.from(Array(total_page + 1), (v, k) => k);
+  for (let i = -4; i <= 4; i++) {
+    let current = page + i;
+    if (current >= 0 && current <= total_page) {
+      list.push(current);
+    }
+  }
+
   if (total_page == 0) {
     return <></>;
   }
+
   return (
     <Box>
       <Box display="flex" justifyContent="center">

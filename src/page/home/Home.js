@@ -1,5 +1,5 @@
-import { Box, Heading, Column, Text } from "gestalt";
-
+import React, { useState } from "react";
+import { Box, Heading, Column, Text, Spinner } from "gestalt";
 import { useAutoQuery } from "../../uitls/query";
 import { webInfo } from "./api";
 import IndexCard from "./components/IndexCard";
@@ -7,8 +7,30 @@ import IndexCard from "./components/IndexCard";
 import CookiesTable from "./components/CookiesTable";
 import NewUserTable from "./components/NewUserTable";
 import HeightUserTable from "./components/HeightUserTable";
+import DelCode from "./components/DelCode";
+import CreateCode from "./components/CreateCode";
+import TableLoading from "../../components/TableLoading";
+
+import DatePicker from "gestalt-datepicker";
+import "gestalt-datepicker/dist/gestalt-datepicker.css";
+import { zhCN } from "date-fns/locale";
+import dayjs from "dayjs";
+import utc from "dayjs/plugin/utc";
+import "dayjs/locale/zh-cn";
+
+var relativeTime = require("dayjs/plugin/relativeTime");
+dayjs.extend(utc);
+dayjs.extend(relativeTime);
+dayjs.locale("zh-cn");
+
+function useDate() {}
+
 function Home() {
-  let { data, update, loading } = useAutoQuery(webInfo);
+  let [condition, setCondition] = useState({
+    startTime: "",
+    endTime: "",
+  });
+  let { data, update, loading } = useAutoQuery(webInfo, condition);
 
   return (
     <Box padding={12}>
@@ -55,30 +77,70 @@ function Home() {
             </Box>
           </Box>
         </Column>
+
+        <Column span={2}>
+          <Box color={"lightGray"} margin={1} padding={2} rounding={3} height={120} position="relative">
+            <TableLoading loading={loading} update={update} />
+            <Box>
+              <Text align="left">数据筛选</Text>
+            </Box>
+
+            <DatePicker
+              id="example-basic"
+              label="日期"
+              value={dayjs().startOf("date").toDate()}
+              minDate={new Date(2021, 2, 18)}
+              maxDate={dayjs().endOf("date").toDate()}
+              onChange={(e) => {
+                setCondition({
+                  startTime: dayjs(e.value).startOf("date").format(),
+                  endTime: dayjs(e.value).endOf("date").format(),
+                });
+              }}
+              localeData={zhCN}
+            />
+          </Box>
+        </Column>
       </Box>
+
       <Box borderStyle="lg" rounding={3} padding={2}>
         <Heading size="sm">最新增加会员</Heading>
-        --
-        {/* <NewUserTable /> */}
+        <Box>
+          <NewUserTable />
+        </Box>
       </Box>
       <Box display="flex" direction="row" margin={-2} marginTop={4}>
         <Column span={6}>
           <Box borderStyle="lg" rounding={3} padding={2} margin={2}>
             <Heading size="sm">高频用户</Heading>
-            <Box height="300px" overflow="scrollY">
-              <HeightUserTable />
+            <Box height="735px" overflow="scrollY">
+              <HeightUserTable condition={condition} />
             </Box>
-          </Box>
-          <Box borderStyle="lg" rounding={3} padding={2} margin={2} marginTop={4}>
-            <Heading size="sm">Cookies</Heading>
-            <CookiesTable />
           </Box>
         </Column>
         <Column span={6}>
-          <Box borderStyle="lg" rounding={3} padding={2} margin={2}>
-            <Heading size="sm">日志</Heading>
-            <Box color="lightGray" rounding={3} height={600} padding={2}>
-              ---
+          <Box display="flex">
+            <Column span={6}>
+              <Box borderStyle="lg" rounding={3} padding={2} margin={2}>
+                <Heading size="sm">生成兑换码</Heading>
+                <Box marginTop={2}>
+                  <CreateCode />
+                </Box>
+              </Box>
+            </Column>
+            <Column span={6}>
+              <Box borderStyle="lg" rounding={3} padding={2} margin={2}>
+                <Heading size="sm">注销兑换码</Heading>
+                <Box marginTop={2}>
+                  <DelCode />
+                </Box>
+              </Box>
+            </Column>
+          </Box>
+          <Box borderStyle="lg" rounding={3} padding={2} margin={2} marginTop={4}>
+            <Heading size="sm">Cookies</Heading>
+            <Box height="300px" overflow="scrollY">
+              <CookiesTable condition={condition} />
             </Box>
           </Box>
         </Column>

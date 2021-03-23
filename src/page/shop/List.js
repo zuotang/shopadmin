@@ -120,7 +120,9 @@ function List(props) {
           ))}
         </Table.Body>
       </Table>
-      <Spinner show={loading} accessibilityLabel="加载中" size="sm" />
+      <Box position="absolute" width="100%">
+        <Spinner show={loading} accessibilityLabel="加载中" size="sm" />
+      </Box>
       <Page page={page} page_size={page_size} total_page={total_page} onChange={fetchMore} />
     </Box>
   );
