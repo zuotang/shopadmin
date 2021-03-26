@@ -29,3 +29,8 @@ export async function delUser(params) {
   let { data } = await axios.post(baseUrl + "/user/deluser", params);
   return data;
 }
+
+export async function getUserInfo(params) {
+  let { data } = await axios.get(baseUrl + "/user/userInfo", { params });
+  return data.data;
+}

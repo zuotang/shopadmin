@@ -42,7 +42,10 @@ function TableCom({ condition }) {
               <Text weight="bold">到期时间</Text>
             </Table.HeaderCell>
             <Table.HeaderCell>
-              <Text weight="bold">次数</Text>
+              <Text weight="bold">解析次数</Text>
+            </Table.HeaderCell>
+            <Table.HeaderCell>
+              <Text weight="bold">登录次数</Text>
             </Table.HeaderCell>
             <Table.HeaderCell>
               <Text weight="bold">操作</Text>
@@ -60,7 +63,10 @@ function TableCom({ condition }) {
                   <Text>{dayjs.utc(item.duedate).local().fromNow(true)}</Text>
                 </Table.Cell>
                 <Table.Cell>
-                  <Text>{item.user_num}</Text>
+                  <Text>{item.parse_num}</Text>
+                </Table.Cell>
+                <Table.Cell>
+                  <Text>{item.signin_num}</Text>
                 </Table.Cell>
                 <Table.Cell>
                   {item.status == 0 && (

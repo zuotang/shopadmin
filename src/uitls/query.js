@@ -150,7 +150,7 @@ export function useAutoQuery(ql, params = {}, options = {}) {
         context.fetch(params, options);
       }
     }
-  }, handleOption(params));
+  }, handleOption({ ...params, hold: options.hold, stop: options.stop }));
 
   return {
     ...context,

@@ -49,6 +49,7 @@ function Item({ data, onChange }) {
         type="number"
       />
       <IconButton
+        accessibilityLabel="add"
         disabled={loading}
         color="red"
         icon="add"
@@ -58,6 +59,7 @@ function Item({ data, onChange }) {
         }}
       />
       <IconButton
+        accessibilityLabel="dash"
         disabled={loading}
         color="red"
         icon="dash"

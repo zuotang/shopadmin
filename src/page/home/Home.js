@@ -44,7 +44,7 @@ function Home() {
         <Column span={2}>
           <IndexCard title="今日退款人数" value={data.day_refund_num} subTitle="总退款数" subValue={data.refund_num} />
         </Column>
-        <Column span={2}>
+        <Column span={3}>
           <Box color={"lightGray"} margin={1} padding={2} rounding={3} height={120}>
             <Box>
               <Text align="left">今日兑换卡信息</Text>
@@ -78,7 +78,7 @@ function Home() {
           </Box>
         </Column>
 
-        <Column span={2}>
+        <Column span={3}>
           <Box color={"lightGray"} margin={1} padding={2} rounding={3} height={120} position="relative">
             <TableLoading loading={loading} update={update} />
             <Box>
@@ -104,10 +104,7 @@ function Home() {
       </Box>
 
       <Box borderStyle="lg" rounding={3} padding={2}>
-        <Heading size="sm">最新增加会员</Heading>
-        <Box>
-          <NewUserTable />
-        </Box>
+        <NewUserTable />
       </Box>
       <Box display="flex" direction="row" margin={-2} marginTop={4}>
         <Column span={6}>

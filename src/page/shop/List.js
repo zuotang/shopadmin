@@ -108,6 +108,7 @@ function List(props) {
                   </Link>
                   {item.status === 0 && (
                     <IconButton
+                      accessibilityLabel="cancel"
                       icon="cancel"
                       onClick={(e) => {
                         delFetch({ id: item.id });

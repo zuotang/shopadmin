@@ -19,6 +19,7 @@ function Header({ history, page, onChange, total_page = 0 }) {
       <Box display="flex" justifyContent="center">
         <ButtonGroup>
           <IconButton
+            accessibilityLabel="上"
             icon="arrow-back"
             size="sm"
             color="transparent"
@@ -30,7 +31,7 @@ function Header({ history, page, onChange, total_page = 0 }) {
           {list.map((index) => (
             <Button
               key={index}
-              text={index + 1}
+              text={String(index + 1)}
               size="sm"
               color={page == index ? "red" : "transparent"}
               onClick={(e) => {
@@ -40,6 +41,7 @@ function Header({ history, page, onChange, total_page = 0 }) {
           ))}
 
           <IconButton
+            accessibilityLabel="下"
             icon="arrow-forward"
             size="sm"
             color="transparent"
