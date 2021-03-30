@@ -32,7 +32,7 @@ function UserInfo({ id, onCancel }) {
 
   return (
     <Box marginStart={-1} marginEnd={-1}>
-      <Box padding={1}>
+      <Box marginTop={-2} marginBottom={-2}>
         <IconButton
           accessibilityLabel="edit"
           icon="edit"

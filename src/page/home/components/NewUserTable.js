@@ -35,7 +35,7 @@ function TableCom() {
     update,
     fetchMore,
     loading,
-  } = useAutoQuery(newUser, { keyword: search });
+  } = useAutoQuery(newUser, { keyword: search, page_size: 8 });
   let typeName = ["用户", "代理"];
   let stateName = ["正常", "已注销", "已封号"];
 
@@ -80,10 +80,10 @@ function TableCom() {
               </Table.Row>
             </Table.Header>
             <Table.Body>
-              {list?.map((item) => {
+              {list?.map((item, key) => {
                 return (
                   item.name && (
-                    <Table.Row key={item.id + "_" + item.name}>
+                    <Table.Row key={key}>
                       <Table.Cell>
                         <Text>{item.name}</Text>
                       </Table.Cell>

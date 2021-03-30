@@ -33,7 +33,7 @@ function Home() {
   let { data, update, loading } = useAutoQuery(webInfo, condition);
 
   return (
-    <Box padding={12}>
+    <Box paddingX={12}>
       <Box display="flex" direction="row" paddingY={2}>
         <Column span={2}>
           <IndexCard title="今日新增会员" value={data.day_user_num} subTitle="总会员" subValue={data.user_num} valueColor="red" />
@@ -106,7 +106,7 @@ function Home() {
       <Box borderStyle="lg" rounding={3} padding={2}>
         <NewUserTable />
       </Box>
-      <Box display="flex" direction="row" margin={-2} marginTop={4}>
+      <Box display="flex" direction="row" margin={-2} marginTop={3}>
         <Column span={6}>
           <Box borderStyle="lg" rounding={3} padding={2} margin={2}>
             <Heading size="sm">高频用户</Heading>

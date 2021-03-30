@@ -48,7 +48,7 @@ function TableCom({ condition }) {
               <Table.Row key={item.id}>
                 <Table.Cell>
                   <Box width="200px">
-                    <Text truncate>{item.cid}</Text>
+                    <Text truncate>{item.id}</Text>
                   </Box>
                 </Table.Cell>
                 <Table.Cell>

@@ -70,15 +70,17 @@ function TableCom({ condition }) {
                 </Table.Cell>
                 <Table.Cell>
                   {item.status == 0 && (
-                    <AskButton
-                      text="封号"
-                      size={"sm"}
-                      title="是否禁封用户？"
-                      content="该用户将无法使用！"
-                      onConfirm={(e) => {
-                        fetch({ id: item.id });
-                      }}
-                    />
+                    <Box marginTop={-2} marginBottom={-2}>
+                      <AskButton
+                        text="封号"
+                        size={"sm"}
+                        title="是否禁封用户？"
+                        content="该用户将无法使用！"
+                        onConfirm={(e) => {
+                          fetch({ id: item.id });
+                        }}
+                      />
+                    </Box>
                   )}
                   {item.status == 1 && <Text>已注销</Text>}
                   {item.status == 2 && <Text color="red">已禁封</Text>}
