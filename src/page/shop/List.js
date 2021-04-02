@@ -49,6 +49,9 @@ function List(props) {
               <Text weight="bold">代理价格</Text>
             </Table.HeaderCell>
             <Table.HeaderCell>
+              <Text weight="bold">备注</Text>
+            </Table.HeaderCell>
+            <Table.HeaderCell>
               <Text weight="bold">库存</Text>
             </Table.HeaderCell>
             <Table.HeaderCell>
@@ -84,6 +87,9 @@ function List(props) {
               </Table.Cell>
               <Table.Cell>
                 <Text>{item.proxy_price}</Text>
+              </Table.Cell>
+              <Table.Cell>
+                <Text>{item.remarks}</Text>
               </Table.Cell>
               <Table.Cell>
                 <ListEdit

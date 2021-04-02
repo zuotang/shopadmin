@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Box, TextField, Heading, Flex, Button, Callout } from "gestalt";
+import { Box, TextField, TextArea, Heading, Flex, Button, Callout } from "gestalt";
 import FormItem from "../../components/FormItem";
 import FileUpload from "../../components/FileUpload";
 import { useForm, useFieldArray } from "react-hook-form";
@@ -48,12 +48,6 @@ function Add(props) {
           <form onSubmit={handleSubmit(onSubmit)}>
             <Box display="flex" wrap>
               <Box flex="grow" paddingX={3} paddingY={3}>
-                <FormItem com={TextField} name="brand" label="品牌" ref={register()} />
-              </Box>
-            </Box>
-
-            <Box display="flex" wrap>
-              <Box flex="grow" paddingX={3} paddingY={3}>
                 <FormItem com={TextField} name="name" label="名字" ref={register()} />
               </Box>
               <Box flex="grow" paddingX={3} paddingY={3}>
@@ -69,9 +63,20 @@ function Add(props) {
                 <FormItem com={TextField} name="proxy_price" label="代理价格" type="number" ref={register()} />
               </Box>
             </Box>
+            <Box display="flex" wrap>
+              <Box flex="grow" paddingX={3} paddingY={3}>
+                <FormItem com={TextArea} name="taobao" label="淘宝口令" ref={register()} />
+              </Box>
+            </Box>
 
             <Box flex="grow" paddingX={3} paddingY={3}>
               <FileUpload name="photo" label="上传封面" formCtx={formCtx} />
+            </Box>
+
+            <Box display="flex" wrap>
+              <Box flex="grow" paddingX={3} paddingY={3}>
+                <FormItem com={TextArea} name="remarks" label="备注" ref={register()} />
+              </Box>
             </Box>
 
             <Box flex="grow" paddingX={3} paddingY={3}>
