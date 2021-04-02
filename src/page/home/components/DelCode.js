@@ -19,8 +19,8 @@ function DelCode() {
       <Text size="sm" color="gray">
         每个兑换码使用单独一行
       </Text>
-      <Box width="100%" height={300} marginEnd={1}>
-        <TextArea id="codes" onChange={(e) => setCodes(e.value)} value={codes} rows={10} />
+      <Box width="100%" height={365} marginEnd={1}>
+        <TextArea id="codes" onChange={(e) => setCodes(e.value)} value={codes} rows={12} />
       </Box>
       <AskButton
         text="注销"

@@ -69,6 +69,9 @@ function TableCom() {
                   <Text weight="bold">状态</Text>
                 </Table.HeaderCell>
                 <Table.HeaderCell>
+                  <Text weight="bold">日上限</Text>
+                </Table.HeaderCell>
+                <Table.HeaderCell>
                   <Text weight="bold">注册时间</Text>
                 </Table.HeaderCell>
                 <Table.HeaderCell>
@@ -97,6 +100,9 @@ function TableCom() {
                         <Text>{item.remarks}</Text>
                       </Table.Cell>
                       <Table.Cell>{userStatus(item.status)}</Table.Cell>
+                      <Table.Cell>
+                        <Text>{item.daynum}</Text>
+                      </Table.Cell>
                       <Table.Cell>
                         <Text>{dayjs.utc(item.add_time).local().fromNow()}</Text>
                       </Table.Cell>

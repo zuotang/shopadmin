@@ -41,8 +41,12 @@ function TableCom({ condition }) {
             <Table.HeaderCell>
               <Text weight="bold">到期时间</Text>
             </Table.HeaderCell>
+
             <Table.HeaderCell>
               <Text weight="bold">解析次数</Text>
+            </Table.HeaderCell>
+            <Table.HeaderCell>
+              <Text weight="bold">日上限</Text>
             </Table.HeaderCell>
             <Table.HeaderCell>
               <Text weight="bold">登录次数</Text>
@@ -64,6 +68,9 @@ function TableCom({ condition }) {
                 </Table.Cell>
                 <Table.Cell>
                   <Text>{item.parse_num}</Text>
+                </Table.Cell>
+                <Table.Cell>
+                  <Text>{item.daynum}</Text>
                 </Table.Cell>
                 <Table.Cell>
                   <Text>{item.signin_num}</Text>

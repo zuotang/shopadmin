@@ -41,10 +41,8 @@ function Home() {
         <Column span={2}>
           <IndexCard title="今日解析次数" value={data.day_parse_num} subTitle="总解析次数" subValue={data.parse_num} />
         </Column>
-        <Column span={2}>
-          <IndexCard title="今日退款人数" value={data.day_refund_num} subTitle="总退款数" subValue={data.refund_num} />
-        </Column>
-        <Column span={3}>
+
+        {/* <Column span={3}>
           <Box color={"lightGray"} margin={1} padding={2} rounding={3} height={120}>
             <Box>
               <Text align="left">今日兑换卡信息</Text>
@@ -76,7 +74,7 @@ function Home() {
               </Column>
             </Box>
           </Box>
-        </Column>
+        </Column> */}
 
         <Column span={3}>
           <Box color={"lightGray"} margin={1} padding={2} rounding={3} height={120} position="relative">
@@ -110,7 +108,7 @@ function Home() {
         <Column span={6}>
           <Box borderStyle="lg" rounding={3} padding={2} margin={2}>
             <Heading size="sm">高频用户</Heading>
-            <Box height="735px" overflow="scrollY">
+            <Box height="800px" overflow="scrollY">
               <HeightUserTable condition={condition} />
             </Box>
           </Box>

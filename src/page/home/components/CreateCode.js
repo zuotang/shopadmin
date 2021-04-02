@@ -17,9 +17,10 @@ function SelectType({ value, setValue }) {
   );
 }
 
-function DelCode() {
+function CreateCode() {
   let [message, setMessage] = useState("");
   let [day, setDay] = useState("7");
+  let [daynum, setDaynum] = useState("10");
   let [num, setNum] = useState("50");
   let [remarks, setRemarks] = useState("");
   let [type, setType] = useState("0");
@@ -27,8 +28,7 @@ function DelCode() {
   return (
     <Box>
       <ShowMessage message={{ message }} time={10000} color="red" />
-
-      <SelectList
+      {/* <SelectList
         id="selectlistexample10"
         onChange={(e) => {
           setDay(+e.value);
@@ -41,9 +41,15 @@ function DelCode() {
         ]}
         size="lg"
         label="时长"
-      />
+      /> */}
       <Box marginTop={2}>
-        <TextField id="num" label="数量" type="number" value={num} onChange={(e) => setNum(e.value)} />
+        <TextField id="day" label="天数" type="number" value={day} onChange={(e) => setDay(e.value)} />
+      </Box>
+      <Box marginTop={2}>
+        <TextField id="daynum" label="日次数" type="number" value={daynum} onChange={(e) => setDaynum(e.value)} />
+      </Box>
+      <Box marginTop={2}>
+        <TextField id="num" label="生成数量" type="number" value={num} onChange={(e) => setNum(e.value)} />
       </Box>
       <Box marginTop={2}>
         <SelectType value={type} setValue={setType} />
@@ -52,10 +58,10 @@ function DelCode() {
         <TextField id="remarks" label="备注" value={remarks} onChange={(e) => setRemarks(e.value)} />
       </Box>
       <Box marginTop={2}>
-        <Button text="生成" inline role="link" href={baseUrl + `/user/new_code?day=${day}&num=${num}&type=${type}&remarks=${remarks}`} target="blank" />
+        <Button text="生成" inline role="link" href={baseUrl + `/user/new_code?day=${day}&num=${num}&type=${type}&remarks=${remarks}&daynum=${daynum}`} target="blank" />
       </Box>
     </Box>
   );
 }
 
-export default DelCode;
+export default CreateCode;
