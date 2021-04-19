@@ -20,7 +20,7 @@ function SelectType({ value, setValue }) {
 function DelCode() {
   let [message, setMessage] = useState("");
   let [day, setDay] = useState("7");
-  let [num, setNum] = useState("50");
+  let [num, setNum] = useState("20");
   let [remarks, setRemarks] = useState("");
   let [type, setType] = useState("0");
   console.log(type);
@@ -36,6 +36,7 @@ function DelCode() {
         options={[
           { label: "7天", value: "7" },
           { label: "一个月", value: "30" },
+          { label: "一季度", value: "92" },
           { label: "一年", value: "365" },
           { label: "终身", value: "36500" },
         ]}
