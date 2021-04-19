@@ -34,3 +34,8 @@ export async function getUserInfo(params) {
   let { data } = await axios.get(baseUrl + "/user/userInfo", { params });
   return data.data;
 }
+
+export async function resetError(params) {
+  let { data } = await axios.get(baseUrl + "/core/reset_error", { params });
+  return true;
+}

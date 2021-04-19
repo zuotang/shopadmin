@@ -133,10 +133,7 @@ function Home() {
             </Column>
           </Box>
           <Box borderStyle="lg" rounding={3} padding={2} margin={2} marginTop={4}>
-            <Heading size="sm">Cookies</Heading>
-            <Box height="300px" overflow="scrollY">
-              <CookiesTable condition={condition} />
-            </Box>
+            <CookiesTable condition={condition} />
           </Box>
         </Column>
       </Box>
