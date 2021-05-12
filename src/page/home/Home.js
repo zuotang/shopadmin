@@ -5,7 +5,7 @@ import { webInfo } from "./api";
 import IndexCard from "./components/IndexCard";
 
 import CookiesTable from "./components/CookiesTable";
-import NewUserTable from "./components/NewUserTable";
+import UseCodeTable from "./components/UseCodeTable";
 import HeightUserTable from "./components/HeightUserTable";
 import DelCode from "./components/DelCode";
 import CreateCode from "./components/CreateCode";
@@ -104,7 +104,7 @@ function Home() {
       </Box>
 
       <Box borderStyle="lg" rounding={3} padding={2}>
-        <NewUserTable />
+        <UseCodeTable />
       </Box>
       <Box display="flex" direction="row" margin={-2} marginTop={3}>
         <Column span={6}>

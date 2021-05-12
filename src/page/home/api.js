@@ -15,6 +15,10 @@ export async function newUser(params) {
   let { data } = await axios.get(baseUrl + "/user/new_user", { params });
   return data;
 }
+export async function newUseCode(params) {
+  let { data } = await axios.get(baseUrl + "/user/new_use_codes", { params });
+  return data;
+}
 
 export async function cookies(params) {
   let { data } = await axios.get(baseUrl + "/core/cookies", { params });
