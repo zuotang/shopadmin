@@ -37,8 +37,11 @@ function TableCom() {
     loading,
   } = useAutoQuery(newUseCode, { keyword: search, page_size: 8 });
   let typeName = ["用户", "代理"];
-  let stateName = ["正常", "已注销", "已封号"];
-
+  console.log(list);
+  function showTime(time, fromNow) {
+    if (!time) return "--";
+    return dayjs.utc(time).local().fromNow(fromNow);
+  }
   return (
     <Box position="relative">
       <Box display="flex" justifyContent="between">
@@ -92,39 +95,37 @@ function TableCom() {
             <Table.Body>
               {list?.map((item, key) => {
                 return (
-                  item.name && (
-                    <Table.Row key={key}>
-                      <Table.Cell>
-                        <Text>{item.name}</Text>
-                      </Table.Cell>
-                      <Table.Cell>
-                        <Text>{item.code}</Text>
-                      </Table.Cell>
-                      <Table.Cell>
-                        <Text color={item.type == 0 ? "darkGray" : "red"}>{typeName[item.type]}</Text>
-                      </Table.Cell>
-                      <Table.Cell>
-                        <Text>{item.remarks}</Text>
-                      </Table.Cell>
+                  <Table.Row key={key}>
+                    <Table.Cell>
+                      <Text>{item.name}</Text>
+                    </Table.Cell>
+                    <Table.Cell>
+                      <Text>{item.code}</Text>
+                    </Table.Cell>
+                    <Table.Cell>
+                      <Text color={item.type == 0 ? "darkGray" : "red"}>{typeName[item.type]}</Text>
+                    </Table.Cell>
+                    <Table.Cell>
+                      <Text>{item.remarks}</Text>
+                    </Table.Cell>
 
-                      <Table.Cell>
-                        <Text>{dayjs.utc(item.c_add_time).local().fromNow()}</Text>
-                      </Table.Cell>
+                    <Table.Cell>
+                      <Text>{showTime(item.c_add_time)}</Text>
+                    </Table.Cell>
 
-                      <Table.Cell>
-                        <Text>{dayjs.utc(item.c_use_time).local().fromNow()}</Text>
-                      </Table.Cell>
-                      <Table.Cell>{userStatus(item.c_status)}</Table.Cell>
-                      <Table.Cell>{userStatus(item.u_status)}</Table.Cell>
+                    <Table.Cell>
+                      <Text>{showTime(item.c_use_time)}</Text>
+                    </Table.Cell>
+                    <Table.Cell>{userStatus(item.c_status)}</Table.Cell>
+                    <Table.Cell>{userStatus(item.u_status)}</Table.Cell>
 
-                      <Table.Cell>
-                        <Text>{dayjs.utc(item.u_duedate).local().fromNow(true)}</Text>
-                      </Table.Cell>
-                      <Table.Cell>
-                        <UserInfo id={item.id} show={true} />
-                      </Table.Cell>
-                    </Table.Row>
-                  )
+                    <Table.Cell>
+                      <Text>{showTime(item.u_duedate, true)}</Text>
+                    </Table.Cell>
+                    <Table.Cell>
+                      <UserInfo id={item.id} show={true} />
+                    </Table.Cell>
+                  </Table.Row>
                 );
               })}
             </Table.Body>
